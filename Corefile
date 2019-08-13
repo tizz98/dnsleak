@@ -1,0 +1,8 @@
+.:1053 {
+    leak
+    hosts {
+        127.0.0.1 foo.bar
+        fallthrough
+    }
+    log
+}
