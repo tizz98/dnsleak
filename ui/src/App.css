@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}

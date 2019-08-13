@@ -6,6 +6,7 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/cors"
 	"github.com/go-chi/render"
 )
 
@@ -13,9 +14,15 @@ func newRouter() *chi.Mux {
 	db := NewDB(os.Getenv("DNS_LEAK_REDIS_URI"))
 	r := chi.NewRouter()
 
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},
+		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+	})
+
 	r.Use(middleware.RequestID)
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
+	r.Use(c.Handler)
 	r.Use(middleware.Heartbeat("/health"))
 	r.Use(render.SetContentType(render.ContentTypeJSON))
 
