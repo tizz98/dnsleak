@@ -28,4 +28,6 @@ func main() {
 		log.Fatal(http.ListenAndServe(":3333", newRouter()))
 		return
 	}
+
+	log.Fatalf("unknown command %q", os.Args[1])
 }
